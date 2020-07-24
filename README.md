@@ -16,3 +16,4 @@ Before going further, NOOBS does offer the option of (headless installation of R
 * Dedicated embedded applications can be facilitated simply by creating a WaSaK extension package without requiring a desktop OS to be installed on the Pi.
 * Writable initramfs root filesystem provides further flexibility than read-only SquashFS. SquashFS is still supported to minimise RAM usage.
 * Works with mainline Raspberry Pi kernels including 64-bit kernels.
+* Run dedicated test agents and test kernel builds.

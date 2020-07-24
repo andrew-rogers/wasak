@@ -6,7 +6,7 @@ Prebuilt binaries
 
 WaSaK attempts to utilise as many prebuilt resources as possible to reduce build time. The binaries used by WaSaK are:
 
-* The bootloader, kernel and kernel modules can be found in the [Raspberry Pi firmware](https://github.com/raspberrypi/firmware/archive/stable.zip) GitHub repo.
+* The bootloader, kernel and kernel modules can be found in the [Raspberry Pi firmware](https://github.com/raspberrypi/firmware/archive/stable.zip) GitHub repo. Best to get the zip instead of cloning the repository as these are binary files. Cloning the repository will take a long while as it is huge!
 * [busybox-armv7](https://www.busybox.net/downloads/binaries/1.21.1/busybox-armv7l).
 
 Source code references
