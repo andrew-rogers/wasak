@@ -1,0 +1,6 @@
+#!/bin/busybox-armv7l sh
+
+/bin/busybox-armv7l --install -s
+
+sh
+

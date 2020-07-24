@@ -1,0 +1,9 @@
+file /init ramfs_files/init 0755 0 0
+dir /bin 0755 0 0
+file /bin/busybox-armv7l Downloads/busybox-armv7l 0755 0 0
+slink /bin/sh /bin/busybox-armv7l 0755 0 0
+dir /sbin 0755 0 0
+dir /usr 0755 0 0
+dir /usr/bin 0755 0 0
+dir /usr/sbin 0755 0 0
+

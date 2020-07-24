@@ -8,8 +8,20 @@ BOOT_ZIP="$ROOT/boot.zip"
 mkdir -p "$BOOT"
 
 create_init_ramfs() {
-    echo "create_init_ramfs() is not yet implemented, coming real soon!"
-    touch "$BOOT/wasak_init.img"
+    if [ ! -f "$ROOT/gen_init_cpio" ] ; then
+        ( cd "$ROOT" && gcc "$DOWNLOADS/gen_init_cpio.c" -o gen_init_cpio )
+    fi
+
+    local prev="$PWD"
+
+    IMG=wasak_init.img
+
+    cd "$ROOT"
+    ./gen_init_cpio file_list.txt > "$IMG"
+    gzip "$IMG"
+    mv "$IMG.gz" "$BOOT/$IMG"
+
+    cd "$prev"
 }
 
 unzip_firmware() {
