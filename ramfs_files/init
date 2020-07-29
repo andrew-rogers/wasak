@@ -2,5 +2,15 @@
 
 /bin/busybox-armv7l --install -s
 
-sh
+mount -t proc proc /proc
+mount -t devtmpfs dev /dev
 
+sleep 2
+
+mount -t vfat /dev/mmcblk0p1 /mnt/boot
+if [ -f /mnt/boot/wasak.sh ]; then
+    . /mnt/boot/wasak.sh
+else
+    sh
+fi
+umount /mnt/boot

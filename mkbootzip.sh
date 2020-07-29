@@ -46,8 +46,9 @@ unzip_firmware() {
 
 create_zip() {
     local boot=$(dirname "$KERNEL")
-    ( cd "$boot" && zip "$BOOT_ZIP" -r * )
+    ( cd "$boot" && zip "$BOOT_ZIP" -r * && cd .. && zip "$BOOT_ZIP" -r modules/* )
     ( cd "$BOOT" && zip "$BOOT_ZIP" cmdline.txt config.txt wasak_init.img )
+    ( cd "$ROOT" && zip "$BOOT_ZIP" wasak.sh )
 }
 
 create_init_ramfs

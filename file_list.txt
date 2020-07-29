@@ -6,4 +6,8 @@ dir /sbin 0755 0 0
 dir /usr 0755 0 0
 dir /usr/bin 0755 0 0
 dir /usr/sbin 0755 0 0
+dir /dev 0755 0 0
+dir /proc 0755 0 0
+dir /mnt 0755 0 0
+dir /mnt/boot 0755 0 0
 
