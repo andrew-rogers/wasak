@@ -7,6 +7,7 @@ PKG_DIR="$BOOT/wasak_packages"
 install_packages() {
     for pkg in "$PKG_DIR"/*.zip; do
         if [ -f "$pkg" ]; then
+            wasak_log "Expanding package: $pkg"
             unzip "$pkg"
             if [ -f POSTINST.sh ]; then
                 . POSTINST.sh
@@ -15,6 +16,7 @@ install_packages() {
     done
     for pkg in "$PKG_DIR"/*.tgz; do
         if [ -f "$pkg" ]; then
+            wasak_log "Expanding package: $pkg"
             tar -zxvf "$pkg"
             if [ -f POSTINST.sh ]; then
                 . POSTINST.sh
