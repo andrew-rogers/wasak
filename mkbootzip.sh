@@ -62,7 +62,7 @@ unzip_module() {
 create_zip() {
     local boot=$(dirname "$KERNEL")
     ( cd "$boot" && zip "$BOOT_ZIP" -r * && cd .. && zip "$BOOT_ZIP" -r modules/* )
-    ( cd "$BOOT" && zip "$BOOT_ZIP" cmdline.txt config.txt wasak_init.img )
+    ( cd "$BOOT" && zip "$BOOT_ZIP" cmdline.txt config.txt wasak_init.img wasak.log )
     ( cd "$ROOT" && zip "$BOOT_ZIP" wasak.sh )
     ( cd "$BOOT" && zip "$BOOT_ZIP" -r wasak_packages/* )
 }
@@ -89,5 +89,6 @@ if [ -f "$KERNEL" ] ; then
     echo "console=serial0,115200 console=tty1 rootwait init=/init" > "$BOOT/cmdline.txt"
     echo "arm_64bit=1" > "$BOOT/config.txt"
     echo "initramfs wasak_init.img followkernel" >> "$BOOT/config.txt"
+    touch "$BOOT/wasak.log"
     create_zip
 fi
