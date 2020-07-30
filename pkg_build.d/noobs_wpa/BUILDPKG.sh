@@ -8,7 +8,7 @@ mkdir -p "$dir/root"
 noobs_unzip() {
     local noobs_zip=$(find "$DOWNLOADS" | grep "NOOBS_lite" | tail -n1)
     if [ -f "$noobs_zip" ]; then
-        ( cd "$dir/src" && unzip "$noobs_zip" "recovery.rfs" && unsquashfs "recovery.rfs")
+        ( cd "$dir/src" && unzip -o "$noobs_zip" "recovery.rfs" && unsquashfs "recovery.rfs")
     else
         echo "Could not find NOOBS in downloads directory."
     fi

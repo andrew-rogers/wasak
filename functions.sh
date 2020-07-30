@@ -37,3 +37,7 @@ set_var()
     echo "$name=$val" > "$file"
   fi
 }
+
+msg() {
+    printf "%s\n" "$*" >&2
+}
