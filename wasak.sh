@@ -56,6 +56,3 @@ install_packages
 
 sync
 
-echo "Welcome to the WaSaK test shell."
-sh
-

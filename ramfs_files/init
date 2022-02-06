@@ -10,7 +10,8 @@ sleep 2
 mount -t vfat /dev/mmcblk0p1 /mnt/boot
 if [ -f /mnt/boot/wasak.sh ]; then
     . /mnt/boot/wasak.sh
-else
-    sh
 fi
-umount /mnt/boot
+
+# Start a shell to hold this process open otherwise linux will shutdown.
+sh
+
