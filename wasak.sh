@@ -51,6 +51,8 @@ mount -t sysfs sys /sys || wasak_log "Could not mount sysfs."
 mkdir /dev/pts
 /bin/mount -t devpts none /dev/pts || wasak_log "Could not mount devpts."
 
+hostname WaSaK
+
 cd /
 install_packages
 
