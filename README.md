@@ -17,3 +17,10 @@ Before going further, NOOBS does offer the option of (headless installation of R
 * Writable initramfs root filesystem provides further flexibility than read-only SquashFS. SquashFS is still supported to minimise RAM usage.
 * Works with mainline Raspberry Pi kernels including 64-bit kernels.
 * Run dedicated test agents and test kernel builds.
+
+## Alpine Linux - new base for WaSaK
+
+Alpine Linux supports [Headless Installation on the Raspberry Pi](https://wiki.alpinelinux.org/wiki/Raspberry_Pi_-_Headless_Installation). It appears to support nearly all the functionality of WaSaK apart from the installation of ttyd. WaSaK will use Alpine as its base in future revisions. This will mean that WaSaK will no longer be dependent on parts of the NOOBS filesystem.
+
+A very useful feature of Alpine is the [lbu](https://wiki.alpinelinux.org/wiki/Alpine_local_backup) which is a manager for overlay filesystems. One great feature is that filesystem changes can be reviewed and then committed or reverted.
+
