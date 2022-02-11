@@ -38,6 +38,24 @@ set_var()
   fi
 }
 
+get_var()
+{
+    local name="$1"
+    local val="${!name}"
+
+    # Call the checker to see if val is OK
+    val=$(check_$name "$val")
+
+    # If val is empty, ask for it
+    if [ -z "$val" ]; then
+        val=$(ask_$name)
+        if [ -n "$val" ]; then
+            set_var "$name" "$val"
+        fi
+    fi
+    echo "$val"
+}
+
 msg() {
     printf "%s\n" "$*" >&2
 }
