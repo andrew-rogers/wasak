@@ -8,7 +8,7 @@ __create_eni()
 
 	auto ${iface}
 	iface ${iface} inet dhcp
-	        hostname localhost
+	        hostname wasak
 	EOF
 }
 
