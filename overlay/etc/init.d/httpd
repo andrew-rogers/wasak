@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+
+name="WaSaK $SVCNAME"
+command="busybox"
+command_args="nc -lk -p 80 -e /etc/wasak/httpd-conn.sh &"
+
+depend() {
+	need net localmount
+	after firewall
+}
+

@@ -24,6 +24,10 @@ handle() {
     send_file index.html
 }
 
+if [ -z "$WEB_ROOT" ]; then
+    WEB_ROOT=/etc/wasak/www
+fi
+
 req="$1"
 if [ -z "$req" ]; then
     req=$(head -n1)
