@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Start the nc server
+port=8080
+dir=$(dirname $0)
+handler="$dir/httpd-conn.sh"
+export LOG_FILE=httpd.log
+export WEB_ROOT="$dir/../../var/www"
+if [ "$(whoami)" = "root" ]; then
+    port=80
+    mkdir -p /var/run/httpd
+    LOG_FILE=/var/run/httpd/httpd.log
+    WEB_ROOT=/var/www
+fi
+echo "Starting server on port $port." >> "$LOG_FILE"
+busybox nc -lk -p $port -e "$handler" &
+

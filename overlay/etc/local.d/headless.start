@@ -63,3 +63,6 @@ __edit_ess
 rc-service sshd restart
 mv /etc/ssh/sshd_config.orig /etc/ssh/sshd_config
 
+# Start the WaSaK HTTP server.
+httpd
+
