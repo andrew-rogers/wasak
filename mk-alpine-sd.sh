@@ -70,7 +70,60 @@ ask_boot_dev() {
     fi
 }
 
-BOOT_DEV=$(get_var boot_dev)
+cp_sd() {
+    local src="$1"
+    local dst="$2"
 
+    local mnt=$(get_mnt)
+
+    # Check mount point has at least four characters, i.e. isn't root filesystem.
+    if [ "${#mnt}" -ge "4" ] ; then
+        cp "$src" "$mnt/$dst"
+    fi
+}
+
+untgz_sd() {
+    local tgz="$1"
+
+    local mnt=$(get_mnt)
+
+    # Check mount point has at least four characters, i.e. isn't root filesystem.
+    if [ "${#mnt}" -ge "4" ] ; then
+        ( cd "$mnt" && tar -zxvf "$tgz" )
+    fi
+}
+
+get_mnt() {
+    if [ -n "$BOOT_DEV" ] ; then
+        local dev=$(echo "$BOOT_DEV" | awk '{print $1}')
+        dev_fs_details "$dev" MOUNTPOINT
+    fi
+}
+
+# Do all the required downloads
+$ROOT/downloads.sh
+
+BOOT_DEV=$(get_var boot_dev)
 echo "Device for boot files: $BOOT_DEV"
+
+# Un-tar the boot files
+MNT=$(get_mnt)
+if [ ! -f "$MNT/config.txt" ]; then
+    alpine=$(find $DOWNLOADS | grep alpine)
+    untgz_sd "$alpine"
+fi
+
+# Headless overlay
+OVL=wasak.apkovl.tar.gz
+( cd overlay && tar --owner=0 --group=0 -zcvf ../$OVL *)
+cp_sd "$OVL"
+
+# ttyd to apks
+cp_sd "$(find $DOWNLOADS | grep 'ttyd.*\.apk')" apks
+
+# Check for wifi.txt
+WIFI=wifi.txt
+if [ ! -f "$MNT/$WIFI" ] ; then
+    echo "The $WIFI file was not found on $MNT. This will be needed for wireless networks."
+fi
 
